@@ -1,16 +1,22 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../assets/css/main.css'
 
 export default function Login() {
   const [HidePassword, setShowPass]=useState(true)
-
+  const email=useRef()
+  const password=useRef()
   const navigate=useNavigate();
+
+  const handleLogin=()=>{
+     
+  }
   return (
    <>
    
    <div class='container mx-auto flex justify-center'>
       <div class='w-96 mt-10 items-center'>
+        <form onSubmit={handleLogin} >
         <div class="min-h-96 px-8 py-6 mt-4 text-left bg-white dark:bg-gray-900  rounded-xl shadow-lg">
             <div class="flex flex-col justify-center items-center h-full select-none">
                 <div class="flex flex-col items-center justify-center gap-2 mb-8">
@@ -24,13 +30,13 @@ export default function Login() {
                   <label class="absolute -top-1 left-3 font-semibold text-xs text-gray-400 dark:text-gray-400 transition-transform transform -translate-y-1/1 bg-white px-1">
                     Email-id
                   </label>
-                  <input class="border rounded-lg px-3 py-2 mb-5 text-sm max-w-full outline-none dark:border-gray-500 dark:bg-gray-900"/>
+                  <input class="border rounded-lg px-3 py-2 mb-5 text-sm max-w-full outline-none dark:border-gray-500 dark:bg-gray-900" ref={email} required/>
                 </div>
 
             </div>
             <div class="relative w-full flex flex-col gap-2">
                 <label class="absolute -top-1 left-3 font-semibold text-xs text-gray-400 dark:text-gray-400 transition-transform transform -translate-y-1/1 bg-white px-1">Password</label>
-                <input type={HidePassword ? "password" : 'text' } class="border rounded-lg px-3 py-2 mb-2 text-sm w-full outline-none dark:border-gray-500 dark:bg-gray-900" />
+                <input type={HidePassword ? "password" : 'text' } class="border rounded-lg px-3 py-2 mb-2 text-sm w-full outline-none dark:border-gray-500 dark:bg-gray-900" required ref={password}/>
                 {HidePassword ? <div className='relative  parent-show'><i class='absolute  bx bx-show fs-4' onClick={()=>setShowPass(!HidePassword)}></i></div>:
                <div className='parent-show'><i class='bx bx-hide fs-4' onClick={()=>setShowPass(!HidePassword)}></i></div>}
             </div>
@@ -44,6 +50,7 @@ export default function Login() {
             <Link to='register'><span className='cursor-pointer'>Not A User? Register</span></Link> 
              </div>
         </div>
+        </form>
       </div>
     </div>
 

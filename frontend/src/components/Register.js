@@ -70,11 +70,11 @@ export default function Register() {
                 {HidePassword ? <div className='relative  parent-show'><i class='absolute  bx bx-show fs-4' onClick={()=>setShowPass(!HidePassword)}></i></div>:
                   <div className='parent-show'><i class='bx bx-hide fs-4' onClick={()=>setShowPass(!HidePassword)}></i></div>}
             </div>
-            <div className="mt-10">
+            <div className="mt-1">
                 <button class="py-1 px-8 bg-[#5d1689] text-white w-full transition ease-in duration-200 text-center text-base font-semibold  focus:outline-none   rounded-lg cursor-pointer select-none" onClick={handleRegister}>Register</button>
             </div>
             <div class='mt-2 text-center font-semibold text-xs text-[#5d1689]'>
-            <Link to='/'><span className='cursor-pointer'>Already Register? Login</span></Link> 
+            <Link to='/'><span className='cursor-pointer'>Already Register? Login</span></Link>
              </div>
         </div>
       </div>
@@ -83,3 +83,4 @@ export default function Register() {
   </>
   )
 }
+ 
