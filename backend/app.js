@@ -1,7 +1,6 @@
-
+require('dotenv').config() // Load environment variable.
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql2');
 const app = express();
 const cors= require('cors')
 
@@ -10,12 +9,13 @@ app.use(bodyParser.json());
 // Use cors middleware
 app.use(cors());
 
-// Routes
+// Import routes
 const userRoutes = require('./routes/userRoutes');
 // const categoryRoutes = require('./routes/categoryRoutes');
 // const subcategoryRoutes = require('./routes/subcategoryRoutes');
 // const productRoutes = require('./routes/productRoutes');
 
+// Use routes
 app.use('/api/users', userRoutes);
 // app.use('/categories', categoryRoutes);
 // app.use('/subcategories', subcategoryRoutes);

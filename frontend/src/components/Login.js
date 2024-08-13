@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../assets/css/main.css'
+import axios from 'axios'
 
 export default function Login() {
   const [HidePassword, setShowPass]=useState(true)
@@ -8,8 +9,26 @@ export default function Login() {
   const password=useRef()
   const navigate=useNavigate();
 
-  const handleLogin=()=>{
-     
+  const handleLogin= async(e)=>{
+    e.preventDefault();
+    const userData={'email':email.current.value, 'password':password.current.value}
+    try{
+      await  axios({
+          url:'http://localhost:4000/api/users/login',
+          method:'post',
+          data: userData,
+          ContentType:'application/json'
+        }).then((e)=>{
+          console.log(e.data)
+          sessionStorage.setItem('token',e.data.token)
+          if(e.data){
+            navigate('/home/dashboard')
+          }
+        })
+      }catch(error){
+        console.error('Error registering user:', error);
+        alert(error.response?.data.message)
+      }
   }
   return (
    <>
@@ -44,7 +63,7 @@ export default function Login() {
                <span>Forgot Password?</span>
             </div>
             <div className="mt-4">
-                <button class="py-1 px-8 bg-[#5d1689] text-white w-full transition ease-in duration-200 text-center text-base font-semibold  focus:outline-none   rounded-lg cursor-pointer select-none" onClick={()=>navigate('/home/dashboard')}>Log In</button>
+                <button class="py-1 px-8 bg-[#5d1689] text-white w-full transition ease-in duration-200 text-center text-base font-semibold  focus:outline-none   rounded-lg cursor-pointer select-none" >Log In</button>
             </div>
             <div class='mt-2 text-center font-semibold text-xs text-[#5d1689]'>
             <Link to='register'><span className='cursor-pointer'>Not A User? Register</span></Link> 

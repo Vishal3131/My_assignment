@@ -2,7 +2,7 @@
 const userModel = require('../models/userModel');
 
 // Create User
-async function createUser(req, res) {
+async function createUser(req, res) { 
     const user = req.body;
 
     const users = await userModel.getUsers();
