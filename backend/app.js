@@ -11,13 +11,13 @@ app.use(cors());
 
 // Import routes
 const userRoutes = require('./routes/userRoutes');
-// const categoryRoutes = require('./routes/categoryRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
 // const subcategoryRoutes = require('./routes/subcategoryRoutes');
 // const productRoutes = require('./routes/productRoutes');
 
 // Use routes
 app.use('/api/users', userRoutes);
-// app.use('/categories', categoryRoutes);
+app.use('/api/categories', categoryRoutes);
 // app.use('/subcategories', subcategoryRoutes);
 // app.use('/products', productRoutes);
 

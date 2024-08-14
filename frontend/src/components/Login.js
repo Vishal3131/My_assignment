@@ -20,7 +20,7 @@ export default function Login() {
           ContentType:'application/json'
         }).then((e)=>{
           console.log(e.data)
-          sessionStorage.setItem('token',e.data.token)
+          localStorage.setItem('token',e.data.token)
           if(e.data){
             navigate('/home/dashboard')
           }

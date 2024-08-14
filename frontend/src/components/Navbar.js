@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Modal from './Modal'
 
-
+ 
 export default function Navbar() {
     const [Toggle,setToggle]=useState(true)
 
@@ -19,7 +19,7 @@ export default function Navbar() {
          <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
              <button type="button" class="flex text-sm rounded-full md:me-0" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                <span class="text-3xl text-white"><i class='bx bx-user-circle' onClick={()=>setToggle(!Toggle)}></i></span>
-             </button>  
+             </button>
            </div>
           
          </div>

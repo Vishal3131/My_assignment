@@ -10,11 +10,12 @@ import SubCategory from './subCategory/SubCategory';
 import AddSubCategory from './subCategory/AddSubCategory';
 import Product from './product/Product';
 import AddProduct from './product/AddProduct';
+import MyContext from './context/MyContext';
 
 export default function Routing() {
   return (
     <>
-    
+    <MyContext>
      <Router>
        <Routes>
         <Route path='/' element={<Login/>}/>
@@ -33,7 +34,7 @@ export default function Routing() {
         </Route>
        </Routes>
      </Router>
-    
+     </MyContext>
     </>
   )
 }

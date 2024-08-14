@@ -1,6 +1,7 @@
 import React, { useRef,useState } from 'react'
 import '../../assets/css/main.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function AddCategory() {
   const [image, setImage] = useState(null);
@@ -20,15 +21,32 @@ export default function AddCategory() {
 
     }
 
-    const SaveCategory=()=>{
+    const SaveCategory=async()=>{
       const formData= new FormData();
 
-      FormData.append('file',image)
-      FormData.append('categoryName',catName.current.value)
-      FormData.append('sequence',sequence.current.value)
+      formData.append('image',image)
+      formData.append('categoryName',catName.current.value)
+      formData.append('status','Active')
+      formData.append('sequence',sequence.current.value)
 
-      console.log(formData)
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
     }
+
+      try{
+        await  axios({
+            url:'http://localhost:4000/api/categories/',
+            method:'post',
+            data: formData
+          }).then((e)=>{
+            console.log(e.data)
+          })
+        }catch(error){
+          console.error('Error :', error);
+          alert(error.response?.data.message)
+        }
+      }
+    
     
   return (
    <>
@@ -48,10 +66,10 @@ export default function AddCategory() {
           </div>
           <div class=" relative col-md-4 col-sm-12">
           <div className='form-group'>
-             <label class="absolute -top-1 left-7 font-semibold text-xs text-gray-400 dark:text-gray-400 transition-transform transform -translate-y-1/1 bg-white px-1" ref={sequence}>
+             <label class="absolute -top-1 left-7 font-semibold text-xs text-gray-400 dark:text-gray-400 transition-transform transform -translate-y-1/1 bg-white px-1" >
                Category sequence
              </label>
-             <input type='text' class="form-control shadow-none border rounded-lg px-3 py-2 mb-5 text-sm" /> 
+             <input type='text' class="form-control shadow-none border rounded-lg px-3 py-2 mb-5 text-sm" ref={sequence}/> 
           </div>
           </div>
             {/* <div className='col-md-4'> </div> */}
